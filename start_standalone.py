@@ -273,7 +273,7 @@ class ImprovedProcess:
                 self.conn.commit()
 
         # Determine which songs to scrobble using smart position tracking
-        max_first_time_songs = 10  # Can be made configurable
+        max_first_time_songs = 200  # Can be made configurable
         songs_to_process = self.position_tracker.detect_songs_to_scrobble(
             today_songs, database_songs, is_first_time, max_first_time_songs
         )
