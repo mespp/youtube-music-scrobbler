@@ -97,7 +97,7 @@ class ImprovedProcess:
 
     def get_token(self):
         print("Waiting for Last.fm authentication...")
-        auth_url = f"https://www.last.fm/api/auth/?api_key={self.api_key}&cb=http://localhost:5588"
+        auth_url = f"https://www.last.fm/api/auth/?api_key={self.api_key}&cb=https://ubiquitous-guide-r696vvpw5qgfxg75-5588.app.github.dev"
         
         with TokenServer(('localhost', 5588), TokenHandler) as httpd:
             webbrowser.open(auth_url)

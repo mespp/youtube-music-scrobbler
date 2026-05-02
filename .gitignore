@@ -164,3 +164,9 @@ browser.json
 watch-history.json
 .vscode/*
 data.db
+
+
+
+
+
+.env
