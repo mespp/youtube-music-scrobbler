@@ -1,0 +1,28 @@
+name: Scrobble YouTube Music
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  scrobble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run scrobbler
+        env:
+          LAST_FM_API: ${{ secrets.LAST_FM_API }}
+          LAST_FM_API_SECRET: ${{ secrets.LAST_FM_API_SECRET }}
+          LASTFM_SESSION: ${{ secrets.LASTFM_SESSION }}
+          YTMUSIC_COOKIE: ${{ secrets.YTMUSIC_COOKIE }}
+        run: python start_standalone.py
