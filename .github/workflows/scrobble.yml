@@ -2,7 +2,7 @@ name: Scrobble YouTube Music
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -26,3 +26,11 @@ jobs:
           LASTFM_SESSION: ${{ secrets.LASTFM_SESSION }}
           YTMUSIC_COOKIE: ${{ secrets.YTMUSIC_COOKIE }}
         run: python start_standalone.py
+
+      - name: Save database
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add data.db
+          git diff --staged --quiet || git commit -m "Update scrobble database"
+          git push
